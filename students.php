@@ -64,6 +64,8 @@
 
     ?>
     </table>
+
+    <a href="new-student.php">Add a student</a>
 </div>
 
 

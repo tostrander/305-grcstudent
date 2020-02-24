@@ -24,14 +24,14 @@ array(6) {
 }
 */
 
-//Pretend that we validated
-require ('validate.php');
-if (!validForm()) {
-    die("Please click back and try again");
-}
-
 //Connect to your database
 require('/home/tostrand/db2.php');
+
+//Validate the data
+require ('validate.php');
+if (!validForm()) {
+    die("<p>Please click back and try again</p>");
+}
 
 //Get the form data and "escape" it
 $sid = mysqli_real_escape_string($cnxn, $_POST['sid']);
@@ -53,6 +53,7 @@ $result = mysqli_query($cnxn, $sql);
 //Print a confirmation
 if ($result) {
     echo "Student inserted successfully!";
+    echo '<a href="students.php">View students</a>';
 }
 
 

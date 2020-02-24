@@ -79,6 +79,7 @@
         </button>
 
     </form>
+    <a href="students.php">View students</a>
     </div>
 
     <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>

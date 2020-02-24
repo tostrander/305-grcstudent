@@ -1,4 +1,5 @@
 <?php
+
     function validForm()
     {
         return validGpa($_POST['gpa'])
@@ -8,12 +9,20 @@
 
     function validGpa($gpa)
     {
-        echo "<p>GPA must be 0.0 to 4.0</p>";
-        return !empty($gpa) && $gpa >= 0.0 && $gpa <= 4.0;
+        if (!empty($gpa)) {
+            if ($gpa < 0.0 || $gpa > 4.0) {
+                echo "<p>GPA must be 0.0 to 4.0</p>";
+                return false;
+            }
+        }
+        return true;
     }
 
     function validName($name)
     {
-        echo "<p>First and last name are required</p>";
-        return !empty($name);
+        if (empty($name)) {
+            echo "<p>First and last name are both required</p>";
+            return false;
+        }
+        return true;
     }
