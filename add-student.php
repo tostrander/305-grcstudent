@@ -3,26 +3,7 @@
 //Turn on error reporting -- this is critical!
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
-/*
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-array(6) {
-    ["sid"]=>
-  string(1) "a"
-    ["firstName"]=>
-  string(1) "b"
-    ["lastName"]=>
-  string(1) "c"
-    ["birthdate"]=>
-  string(10) "1900-02-03"
-    ["gpa"]=>
-  string(3) "3.5"
-    ["advisor"]=>
-  string(4) "none"
-}
-*/
+//var_dump($_GET);
 
 //Connect to your database
 require('/home/tostrand/db2.php');
@@ -41,11 +22,20 @@ $birthdate = mysqli_real_escape_string($cnxn, $_POST['birthdate']);
 $gpa = mysqli_real_escape_string($cnxn, $_POST['gpa']);
 $advisor = mysqli_real_escape_string($cnxn, $_POST['advisor']);
 
-//Write an SQL statement
-$sql = "INSERT INTO student 
-        VALUES ('$sid', '$firstName', '$lastName',
-                '$birthdate', '$gpa', '$advisor')";
+//See if this is an update
+if (isset($_GET['action'])) {
+    $sql = "UPDATE student
+            SET sid='$sid', first='$firstName', last='$lastName',
+                birthdate='$birthdate', gpa='$gpa', advisor='$advisor'
+            WHERE sid='$sid'";
+} else {
+    //Write an SQL statement
+    $sql = "INSERT INTO student 
+            VALUES ('$sid', '$firstName', '$lastName',
+                    '$birthdate', '$gpa', '$advisor')";
+}
 //echo $sql;
+//return;
 
 //Send the query to the database
 $result = mysqli_query($cnxn, $sql);

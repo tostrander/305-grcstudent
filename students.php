@@ -57,7 +57,7 @@
 
             echo "<tr>
                     <td>$sid</td>
-                    <td>$first $last</td>
+                    <td><a href='new-student.php?sid=$sid'>$first $last</a></td>
                     <td>$gpa</td>
                   </tr>";
         }
